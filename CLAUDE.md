@@ -5,7 +5,7 @@ Public repo: https://github.com/fremontcw/Mushroom-Dungeon-and-Chill (renamed fr
 `~/work/Mushroom-Dungeon-and-Chill`, was `rasp_pi_test`). Single squashed initial commit so no Pi host/user ever hit history.
 
 ## Repo hygiene
-- Nothing identifying goes in tracked files: host/user only in git-ignored `deploy.env`; `lofi-claude.service` has a `PI_USER` placeholder that `deploy.sh` substitutes. `git grep -E "192\.168|fremontcw"` should stay empty.
+- Nothing identifying goes in tracked files: host/user only in git-ignored `deploy.env`; `lofi-claude.service` has a `PI_USER` placeholder that `deploy.sh` substitutes. A `git grep` for the LAN IP should stay empty (the GitHub handle in the repo URL is public anyway).
 - GitHub repo names can't contain `&`; the display name "Mushroom Dungeon & Chill" lives in README/CLAUDE.md, slug is `Mushroom-Dungeon-and-Chill`. Keep `&` out of folder names too.
 - Renaming the folder breaks `.venv` (absolute shebangs) — `rm -rf .venv && python3 -m venv .venv && .venv/bin/pip install pygame-ce pillow`.
 - README leads with `docs/demo.gif` (10 s, 15 fps, 640x360, ~700 KB) rendered headless via Pillow; regenerate it after visible scene changes. Topics: raspberry-pi, pygame, pixel-art, lofi, ambient-display, screensaver, python.
@@ -32,7 +32,7 @@ Public repo: https://github.com/fremontcw/Mushroom-Dungeon-and-Chill (renamed fr
 - Glow: use `BLEND_RGB_ADD` with dim colours on a non-alpha surface. `BLEND_RGBA_ADD` with alpha discs renders solid.
 - `pygame.mixer` must NOT be initialised when silent (`pygame.display.init()` only) — ALSA underrun spam otherwise.
 - Check: `.venv/bin/python lofi_claude/test_scene_renders.py` → `ok`. Dev preview: `.venv/bin/python lofi_claude/main.py --windowed`.
-- Deploy: `./deploy.sh` — runs the local check, wipes old `.py` files on the Pi, copies, substitutes `PI_USER` into `lofi-claude.service`, restarts. Service: DISPLAY=:0, XDG_RUNTIME_DIR=/run/user/1000, WantedBy=graphical.target.
+- Deploy: `./deploy.sh` — runs the local check, wipes old `.py` files on the Pi, copies, substitutes `PI_USER` and the audio flag into `lofi-claude.service`, restarts. `PI_AUDIO=1` in `deploy.env` makes the Pi play the music itself (3.5 mm jack / whatever PipeWire's default sink is); default is `--silent`. Service: DISPLAY=:0, XDG_RUNTIME_DIR=/run/user/1000, WantedBy=graphical.target.
 - Don't chain edit + deploy with `&&` in one shell call — one failed step (or `grep -v` matching nothing) silently skips the rest. Use absolute paths; the shell cwd persists between calls.
 - Mac `ffmpeg` has no libvorbis; use `-c:a vorbis -strict -2`. The OGA dungeon ambience is ~-30 dB RMS — needed +12 dB to be audible under the music.
 

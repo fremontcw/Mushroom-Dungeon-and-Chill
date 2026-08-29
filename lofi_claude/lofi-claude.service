@@ -7,7 +7,7 @@ User=PI_USER
 Environment=DISPLAY=:0
 Environment=XAUTHORITY=/home/PI_USER/.Xauthority
 Environment=XDG_RUNTIME_DIR=/run/user/1000
-ExecStart=/usr/bin/python3 /home/PI_USER/lofi_claude/main.py --silent
+ExecStart=/usr/bin/python3 /home/PI_USER/lofi_claude/main.py AUDIO_FLAG
 Restart=always
 RestartSec=3
 

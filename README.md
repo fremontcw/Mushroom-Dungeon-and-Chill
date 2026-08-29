@@ -32,6 +32,10 @@ That runs the local check, copies `lofi_claude/` to `~` on the Pi, installs
 `lofi-claude.service`, and starts it. It starts on every boot from then on.
 `sudo systemctl stop lofi-claude` to get the desktop back.
 
+Sound: the Pi runs silent by default. If it has speakers (3.5 mm jack, or HDMI
+where the TV exposes audio), set `PI_AUDIO=1` in `deploy.env` and redeploy — the
+music and drips then play from the Pi.
+
 ## Layout
 
 ```
