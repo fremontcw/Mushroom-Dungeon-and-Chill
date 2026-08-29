@@ -1,4 +1,4 @@
-# sewer-lofi
+# Mushroom Dungeon & Chill
 
 A pixel-art ambient scene for a Raspberry Pi hooked to a TV: fungus folk pacing a
 sewer walkway while a canal flows past, lofi-girl style. Runs fullscreen at boot.

@@ -1,4 +1,4 @@
-# rasp_pi_test — project memory
+# Mushroom Dungeon & Chill — project memory
 
 Pixel-art ambient scene ("lofi") running fullscreen on a Raspberry Pi 3, developed on this Mac.
 
