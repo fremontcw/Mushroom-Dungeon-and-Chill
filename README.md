@@ -3,7 +3,7 @@
 A pixel-art ambient scene for a Raspberry Pi hooked to a TV: fungus folk pacing a
 sewer walkway while a canal flows past, lofi-girl style. Runs fullscreen at boot.
 
-![Screenshot](docs/screenshot.png)
+![Demo](docs/demo.gif)
 
 Native 320×180 canvas, GPU-upscaled with vsync — about 20% of one core on a Pi 3.
 
