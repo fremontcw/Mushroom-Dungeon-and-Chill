@@ -1,0 +1,15 @@
+[Unit]
+Description=Lofi Claude pixel-art scene
+After=graphical.target
+
+[Service]
+User=PI_USER
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/PI_USER/.Xauthority
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+ExecStart=/usr/bin/python3 /home/PI_USER/lofi_claude/main.py --silent
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=graphical.target
