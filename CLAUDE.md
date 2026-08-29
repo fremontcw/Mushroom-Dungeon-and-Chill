@@ -10,6 +10,8 @@ Public repo: https://github.com/fremontcw/Mushroom-Dungeon-and-Chill (renamed fr
 - Renaming the folder breaks `.venv` (absolute shebangs) — `rm -rf .venv && python3 -m venv .venv && .venv/bin/pip install pygame-ce pillow`.
 - README leads with `docs/demo.gif` (10 s, 15 fps, 640x360, ~700 KB) rendered headless via Pillow; regenerate it after visible scene changes. Topics: raspberry-pi, pygame, pixel-art, lofi, ambient-display, screensaver, python.
 - Licensing: code MIT (`LICENSE`), assets excluded; `CREDITS.md` names LimeZu (CC BY 4.0, notes crops are unmodified), TAD (CC0), OGA ambience (CC0, +12 dB change noted — CC BY/CC0 etiquette is to state modifications).
+- **Release checklist (done 2026-08-29, repeat before announcing a new version):** (1) `git log --all -p | grep -E "192\.168\.[0-9]+\.[0-9]+|PRIVATE KEY|ssh-(ed25519|rsa) AAAA|token|password"` — only the example IP and the CLAUDE.md sentence about passwords may appear; (2) `git ls-files --error-unmatch deploy.env` must fail; (3) fresh `git clone` into the scratchpad, follow README verbatim: venv + pygame-ce, `test_scene_renders.py` → ok, run `main.py --windowed` (with and without `--silent`) and `play_music_on_mac.py` for a few seconds each, then `./deploy.sh` from the clone → Pi `active`. All passed on the first public release.
+- macOS has no `timeout`; time-box a run with a Python `subprocess.run(..., timeout=4)` and treat `TimeoutExpired` as success. The "no fast renderer available" warning under `SDL_VIDEODRIVER=dummy` is harmless.
 - Nothing on GitHub does quite this (lofi-style composed scene on a Pi HDMI output from asset packs); nearest are LED-matrix vignettes and aquarium sims.
 
 ## The Pi
